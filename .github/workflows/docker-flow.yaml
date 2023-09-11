@@ -1,0 +1,31 @@
+name: Build and Run Docker Flow Service
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  update-service:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Stop and Remove Docker Containers
+        run: |
+          docker-compose down
+          docker stop python-test
+          docker rm python-test
+        continue-on-error: true
+
+      - name: Remove Previous Docker Image
+        run: |
+          docker rmi python-test
+        continue-on-error: true
+
+      - name: Build and Run Docker Service
+        run: |
+          docker-compose up -d

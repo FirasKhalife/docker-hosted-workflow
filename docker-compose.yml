@@ -1,0 +1,8 @@
+services:
+
+  my-python-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: python-test
+    container_name: python-test
