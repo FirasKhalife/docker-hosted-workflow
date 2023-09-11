@@ -1,7 +1,7 @@
 name: Build and Run Docker Flow Service
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
